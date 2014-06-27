@@ -22,9 +22,9 @@ describe 'openstack-database::taskmanager' do
 
     it 'creates trove-taskmanager.conf file' do
       expect(chef_run).to create_template(filename).with(
-        user: 'trove',
-        group: 'trove',
-        mode: 0640
+        :user => 'trove',
+        :group => 'trove',
+        :mode => 0640
         )
     end
 

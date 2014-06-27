@@ -30,7 +30,7 @@ end
 
 service 'trove-conductor' do
   service_name platform_options['conductor_service']
-  supports status: true, restart: true
+  supports :status => true, :restart => true
 
   action [:enable]
 end
@@ -48,10 +48,10 @@ template '/etc/trove/trove-conductor.conf' do
   group node['openstack']['database']['group']
   mode 00640
   variables(
-    database_connection: db_uri,
-    identity_uri: identity_uri,
-    rabbit: rabbit,
-    rabbit_pass: rabbit_pass
+    :database_connection => db_uri,
+    :identity_uri => identity_uri,
+    :rabbit => rabbit,
+    :rabbit_pass => rabbit_pass
     )
 
   notifies :restart, 'service[trove-conductor]', :immediately

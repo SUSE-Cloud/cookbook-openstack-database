@@ -27,9 +27,9 @@ describe 'openstack-database::api' do
 
   it 'creates the /var/cache/trove directory' do
     expect(chef_run).to create_directory('/var/cache/trove').with(
-      user: 'trove',
-      group: 'trove',
-      mode: 0700
+      :user => 'trove',
+      :group => 'trove',
+      :mode => 0700
       )
   end
 
@@ -38,9 +38,9 @@ describe 'openstack-database::api' do
 
     it 'creates trove.conf file' do
       expect(chef_run).to create_template(filename).with(
-        user: 'trove',
-        group: 'trove',
-        mode: 0640
+        :user => 'trove',
+        :group => 'trove',
+        :mode => 0640
         )
     end
 
@@ -74,9 +74,9 @@ describe 'openstack-database::api' do
 
     it 'creates the file' do
       expect(chef_run).to create_template(filename).with(
-        user: 'trove',
-        group: 'trove',
-        mode: 0640
+        :user => 'trove',
+        :group => 'trove',
+        :mode => 0640
         )
     end
 

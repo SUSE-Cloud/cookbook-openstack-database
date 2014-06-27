@@ -34,7 +34,7 @@ end
 
 service 'trove-api' do
   service_name platform_options['api_service']
-  supports status: true, restart: true
+  supports :status => true, :restart => true
 
   action [:enable]
 end
@@ -59,14 +59,14 @@ template '/etc/trove/trove.conf' do
   group node['openstack']['database']['group']
   mode 00640
   variables(
-    database_connection: db_uri,
-    endpoint: api_endpoint,
-    rabbit: rabbit,
-    rabbit_pass: rabbit_pass,
-    identity_uri: identity_uri,
-    compute_uri: compute_uri,
-    block_storage_uri: block_storage_uri,
-    object_storage_uri: object_storage_uri
+    :database_connection => db_uri,
+    :endpoint => api_endpoint,
+    :rabbit => rabbit,
+    :rabbit_pass => rabbit_pass,
+    :identity_uri => identity_uri,
+    :compute_uri => compute_uri,
+    :block_storage_uri => block_storage_uri,
+    :object_storage_uri => object_storage_uri
     )
 
   notifies :restart, 'service[trove-api]', :immediately
@@ -87,9 +87,9 @@ template '/etc/trove/api-paste.ini' do
   group node['openstack']['database']['group']
   mode 00640
   variables(
-    identity_admin_uri: identity_admin_uri,
-    identity_uri: identity_uri,
-    admin_token: admin_token
+    :identity_admin_uri => identity_admin_uri,
+    :identity_uri => identity_uri,
+    :admin_token => admin_token
     )
 
   notifies :restart, 'service[trove-api]', :immediately

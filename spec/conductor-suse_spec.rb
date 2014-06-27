@@ -22,9 +22,9 @@ describe 'openstack-database::conductor' do
 
     it 'creates the trove-conductor.conf file' do
       expect(chef_run).to create_template(filename).with(
-        user: 'trove',
-        group: 'trove',
-        mode: 0640
+        :user => 'trove',
+        :group => 'trove',
+        :mode => 0640
         )
     end
 

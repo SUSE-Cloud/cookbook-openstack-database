@@ -30,7 +30,7 @@ end
 
 service 'trove-taskmanager' do
   service_name platform_options['taskmanager_service']
-  supports status: true, restart: true
+  supports :status => true, :restart => true
 
   action [:enable]
 end
@@ -53,13 +53,13 @@ template '/etc/trove/trove-taskmanager.conf' do
   group node['openstack']['database']['group']
   mode 00640
   variables(
-    database_connection: db_uri,
-    rabbit: rabbit,
-    rabbit_pass: rabbit_pass,
-    identity_uri: identity_uri,
-    compute_uri: compute_uri,
-    block_storage_uri: block_storage_uri,
-    object_storage_uri: object_storage_uri
+    :database_connection => db_uri,
+    :rabbit => rabbit,
+    :rabbit_pass => rabbit_pass,
+    :identity_uri => identity_uri,
+    :compute_uri => compute_uri,
+    :block_storage_uri => block_storage_uri,
+    :object_storage_uri => object_storage_uri
     )
 
   notifies :restart, 'service[trove-taskmanager]', :immediately
